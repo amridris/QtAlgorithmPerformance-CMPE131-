@@ -215,7 +215,13 @@ void arrayDatabase::randomizedQuickSort(int low, int high)
 
 void arrayDatabase::bubbleSort()
 {
+    int i, j;
+		for (i = 0; i < this->list_size - 1; i++)
 
+			// Last i elements are already in place   
+			for (j = 0; j < this->list_size - i - 1; j++)
+				if (this-> list[j] > this->list[j + 1])
+					swap(&this->list[j], &this->list[j + 1]);
 }
 
 
