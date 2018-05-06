@@ -9,6 +9,7 @@ public:
     AVLtree();
     ~AVLtree();
     bool insert(int r, double price);
+    void deleteKey(const double price);
     void printBalance();
 
 private:
@@ -16,8 +17,8 @@ private:
 
     AVLnode* rotateLeft(AVLnode *a);
     AVLnode* rotateRight(AVLnode *a);
-    AVLnode* rotateLeftThenRight(AVLnode *a);
-    AVLnode* rotateRightThenLeft(AVLnode *a);
+    AVLnode* rotateLeftThenRight(AVLnode *n);
+    AVLnode* rotateRightThenLeft(AVLnode *n);
     void reBalance(AVLnode *n);
     int height(AVLnode *n);
     void setBalance(AVLnode *n);

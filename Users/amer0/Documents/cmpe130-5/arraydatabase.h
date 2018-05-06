@@ -38,6 +38,8 @@ public:
     void mergeSort(int l, int r);
 
     void randomizedQuickSort(int low, int high);
+
+    void bubbleSort();
     
 };
 

@@ -210,7 +210,12 @@ void arrayDatabase::randomizedQuickSort(int low, int high)
            // partition and after partition
            randomizedQuickSort(low, pi);
            randomizedQuickSort(pi + 1, high);
-       }
+    }
+}
+
+void arrayDatabase::bubbleSort()
+{
+
 }
 
 
