@@ -72,12 +72,12 @@ void arrayDatabase::createDatabase(int rooms)
 }
 
 
-double arrayDatabase::bell_curve_generator()
+int arrayDatabase::bell_curve_generator()
 {
     unsigned seed = std::chrono::steady_clock::now().time_since_epoch().count();
     std::default_random_engine e(seed);
     std::normal_distribution<double> distrN(350.0, 12.0);
-    double ran_num = distrN(e);
+    int ran_num = distrN(e);
 
     return ran_num;
 }
@@ -217,12 +217,32 @@ void arrayDatabase::randomizedQuickSort(int low, int high)
 void arrayDatabase::bubbleSort()
 {
     int i, j;
+    ListNode temp;
 		for (i = 0; i < this->list_size - 1; i++)
 
 			// Last i elements are already in place   
 			for (j = 0; j < this->list_size - i - 1; j++)
-				if (this-> list[j] > this->list[j + 1])
-					swap(&this->list[j], &this->list[j + 1]);
+                if (this-> list[j].room_price > this->list[j + 1].room_price){
+
+                    temp = this->list[j];
+                    this->list[j] = this->list[j+1];
+                    this->list[j+1] = temp;
+
+                }
+}
+
+void arrayDatabase::deleteValue(int room_price)
+{
+    this->list.erase(list.begin()+room_price);
+}
+
+void arrayDatabase::addItem()
+{
+    ListNode newItem;
+    newItem.room_price = bell_curve_generator();
+    newItem.room_num = this->list_size + 1;
+    this->list_size++;
+    this->list.push_back(newItem);
 }
 
 

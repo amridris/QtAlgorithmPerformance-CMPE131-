@@ -10,45 +10,45 @@ AVLtree::~AVLtree()
     delete root;
 }
 
-bool AVLtree::insert(int r, double price)
+bool AVLtree::insert(int r, int price)
 {
-        if (root == NULL) {
-                root = new AVLnode(r, price, NULL);
-            }
-
-        else{
-            AVLnode *n = root, *parent;
-
-            while (true) {
-                if (n->price == price)
-                    return false;
-
-                parent = n;
-
-                bool goLeft = n->price > price;
-                n = goLeft ? n->left : n->right;
-
-                if (n == NULL) {
-                    if (goLeft) {
-                        parent->left = new AVLnode(r, price, parent);
-                    }
-                    else {
-                        parent->right = new AVLnode(r, price, parent);
-                    }
-
-                    reBalance(parent);
-                    break;
-                }
-            }
+    if (root == NULL) {
+            root = new AVLnode(r, price, NULL);
         }
 
-        return true;
+    else{
+        AVLnode *n = root, *parent;
+
+        while (true) {
+            if (n->price == price)
+                return false;
+
+            parent = n;
+
+            bool goLeft = n->price > price;
+            n = goLeft ? n->left : n->right;
+
+            if (n == NULL) {
+                if (goLeft) {
+                    parent->left = new AVLnode(r, price, parent);
+                }
+                else {
+                    parent->right = new AVLnode(r, price, parent);
+                }
+
+                reBalance(parent);
+                break;
+            }
+        }
+    }
+
+    return true;
 }
 
-void AVLtree::deleteKey(const double price)
+bool AVLtree::deleteKey(const int price)
 {
     if (root == NULL)
-            return;
+            return false;
 
         AVLnode
             *n       = root,
@@ -83,7 +83,42 @@ void AVLtree::deleteKey(const double price)
                 reBalance(parent);
             }
         }
+       return true;
 }
+
+
+
+
+void AVLtree::createDatabase(int rooms)
+{
+    this->AVL_size = rooms;
+    this->root = nullptr;
+
+    for(int i=0; i<rooms; i++){
+
+        this->insert(rooms, bell_curve_generator());
+    }
+
+}
+
+bool AVLtree::search(AVLnode *a, int price)
+{
+
+    if(this->root == nullptr){
+       return false;
+    }
+    else if (this->root->price == price){
+        return true;
+    }
+    else if(price < this->root->price){
+        search(root->left, price);
+    }
+    else if(price > this->root->price){
+        search(root->right, price);
+    }
+}
+
+
 
 AVLnode *AVLtree::rotateLeft(AVLnode *a)
 {
@@ -193,6 +228,16 @@ void AVLtree::printBalance(AVLnode *n)
             printBalance(n->left);
             std::cout << n->balance << " ";
             printBalance(n->right);
-        }
+    }
 }
+
+int AVLtree::bell_curve_generator()
+{
+        unsigned seed = std::chrono::steady_clock::now().time_since_epoch().count();
+        std::default_random_engine e(seed);
+        std::normal_distribution<double> distrN(350.0, 12.0);
+        int ran_num = distrN(e);
+        return ran_num;
+}
+
 

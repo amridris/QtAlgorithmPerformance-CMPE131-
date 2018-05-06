@@ -25,7 +25,7 @@ public:
 
     void createDatabase(int rooms);
 
-    double bell_curve_generator();
+    int bell_curve_generator();
 
     void changePrice();
 
@@ -40,7 +40,10 @@ public:
     void randomizedQuickSort(int low, int high);
 
     void bubbleSort();
+
+    void deleteValue(int room_price);
     
+    void addItem();
 };
 
 #endif // ARRAYDATABASE_H

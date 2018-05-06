@@ -3,18 +3,26 @@
 #include<string>
 #include<avlnode.h>
 #include<iostream>
+#include<chrono>
+#include<random>
+#include<utility>
+
 
 class AVLtree
 {
 public:
     AVLtree();
     ~AVLtree();
-    bool insert(int r, double price);
-    void deleteKey(const double price);
+    bool insert(int r, int price);
+    bool deleteKey(const int price);
     void printBalance();
+    void createDatabase(int rooms);
+    int AVL_size;
+    bool search(AVLnode *a, int price);
+    int bell_curve_generator();
 
 private:
-    AVLnode *root;
+    AVLnode *root = nullptr;
 
     AVLnode* rotateLeft(AVLnode *a);
     AVLnode* rotateRight(AVLnode *a);
@@ -25,6 +33,7 @@ private:
     void setBalance(AVLnode *n);
     void printBalance(AVLnode *n);
     void clearNode(AVLnode *n);
+
 };
 
 #endif // AVLTREE_H

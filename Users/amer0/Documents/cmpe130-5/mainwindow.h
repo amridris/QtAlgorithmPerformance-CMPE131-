@@ -10,6 +10,7 @@
 #include<QElapsedTimer>
 #include<Qstring>
 #include<arraydatabase.h>
+#include<avltree.h>
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,12 @@ private slots:
 
     void on_quick_sort_clicked();
 
+    void on_bubbleSort_clicked();
+
+    void on_AVL_tree_clicked();
+
+    void on_AddItem_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -47,10 +54,14 @@ public:
     arrayDatabase database_selection;
     arrayDatabase database_merge;
     arrayDatabase database_quickSort;
+    arrayDatabase database_bubbleSort;
+    AVLtree database_AVL;
+    double bubble_time;
     double insertion_time;
     double selection_time;
     double merge_time;
     double random_quick_time;
+    double AVL_time;
     int price_change_frequency = 0;
 
 };

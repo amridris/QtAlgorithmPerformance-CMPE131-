@@ -33,6 +33,9 @@ void MainWindow::on_generate_database_clicked()
     this->database_selection.createDatabase(ui->spinBox->value());
     this->database_merge.createDatabase(ui->spinBox->value());
     this->database_quickSort.createDatabase(ui->spinBox->value());
+    this->database_bubbleSort.createDatabase(ui->spinBox->value());
+    this->database_AVL.createDatabase(ui->spinBox->value());
+
 
     //send message to GUI that databases were created
     QMessageBox::information(this, "Progress", "Database created!");
@@ -121,3 +124,54 @@ void MainWindow::on_quick_sort_clicked()
 }
 
 
+void MainWindow::on_bubbleSort_clicked()
+{
+    QElapsedTimer timer;
+    timer.start();
+    int frequency = ui->frequency_box->value();
+    for(int i=0; i<frequency; i++){
+        this->database_bubbleSort.changePrice();
+        this->database_bubbleSort.bubbleSort();
+    }
+    this->bubble_time = timer.elapsed();
+    QString value = QString::number(this->bubble_time);
+    QMessageBox::information(this, "Time Taken", "It took " + value + "ms to sort using Bubble Sort");
+}
+
+void MainWindow::on_AVL_tree_clicked()
+{
+    QElapsedTimer timer;
+    timer.start();
+    int frequency = ui->frequency_box->value();
+    for(int i=0; i<frequency; i++){
+
+        this->database_AVL.createDatabase(ui->spinBox->value());
+    }
+    this->AVL_time = timer.elapsed();
+    QString value = QString::number(this->AVL_time);
+    QMessageBox::information(this, "Time Taken", "It took " + value + "ms to update AVL tree");
+}
+
+
+
+void MainWindow::on_AddItem_clicked()
+{
+    int num_items = ui->vector_add->value();
+    QElapsedTimer timer1, timer2;
+    timer1.start();
+    for(int i=0; i<num_items; i++){
+        database_quickSort.addItem();
+    }
+    double time_taken1 = timer1.elapsed();
+
+    timer2.start();
+    for(int i=0; i<num_items; i++){
+        database_AVL.insert(database_AVL.AVL_size+1, database_AVL.bell_curve_generator());
+        this->database_AVL.AVL_size++;
+    }
+    double time_taken2 = timer2.elapsed();
+    QString value1 = QString::number(time_taken1);
+    QString value2 = QString::number(time_taken2);
+    QMessageBox::information(this, "Time Taken","Vector Add took: "+ value1 + "\nAVL add took: " + value2);
+
+}
