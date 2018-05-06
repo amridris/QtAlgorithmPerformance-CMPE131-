@@ -1,12 +1,57 @@
 #include "arraydatabase.h"
 
-//vector first names
-
-
 
 //helper function
 void merge( database &arr, int left, int middle, int right){
+    int i, j, k;
+       int n1 = middle - left + 1;
+       int n2 =  right - middle;
 
+       /* create temp arrays */
+       ListNode L[n1], R[n2];
+
+       /* Copy data to temp arrays L[] and R[] */
+       for (i = 0; i < n1; i++)
+           L[i] = arr[left + i];
+       for (j = 0; j < n2; j++)
+           R[j] = arr[middle +1+ j];
+
+       /* Merge the temp arrays back into arr[l..r]*/
+       i = 0; // Initial index of first subarray
+       j = 0; // Initial index of second subarray
+       k = left; // Initial index of merged subarray
+       while (i < n1 && j < n2)
+       {
+           if (L[i].room_price <= R[j].room_price)
+           {
+               arr[k] = L[i];
+               i++;
+           }
+           else
+           {
+               arr[k] = R[j];
+               j++;
+           }
+           k++;
+       }
+
+       /* Copy the remaining elements of L[], if there
+          are any */
+       while (i < n1)
+       {
+           arr[k] = L[i];
+           i++;
+           k++;
+       }
+
+       /* Copy the remaining elements of R[], if there
+          are any */
+       while (j < n2)
+       {
+           arr[k] = R[j];
+           j++;
+           k++;
+       }
 }
 
 
@@ -21,9 +66,6 @@ void arrayDatabase::createDatabase(int rooms)
     this->list_size = rooms;
 
     for(unsigned int i=0; i<this->list.size(); i++){
-
-       this->list[i].name = "Customer Name";  // Will add file to save random names
-        this->list[i].phone_num  = this->phone_gen();
         this->list[i].room_price = this->bell_curve_generator();
         this->list[i].room_num = i;
     }
@@ -56,8 +98,6 @@ void arrayDatabase::print_database()
 
     for(int i=0; i<this->list_size; i++){
         std::cout<<"\nRecord # "<< i+1<<std::endl;
-        std::cout<<this->list[i].name<<std::endl;
-        std::cout<<this->list[i].phone_num<<std::endl;
         std::cout<<this->list[i].room_num<<std::endl;
         std::cout<<this->list[i].room_price<<std::endl;
 
@@ -68,61 +108,8 @@ void arrayDatabase::print_database()
 
 
 
-void arrayDatabase::insertionSort(int option)
+void arrayDatabase::insertionSort()
 {
-    if(option == 1){
-        int i, j;
-        ListNode key;
-        for(i=0; i<this->list_size; i++){
-            key = this->list[i];
-            j = i-1;
-
-            while(j>= 0 && this->list[j].phone_num>key.phone_num)
-            {
-                this->list[j+1] = this->list[j];
-                j=j-1;
-            }
-
-            this->list[j+1] = key;
-        }
-    }
-
-    else if(option == 2){
-
-        int i, j;
-        ListNode key;
-        for(i=0; i<this->list_size; i++){
-            key = this->list[i];
-            j = i-1;
-
-            while(j>= 0 && this->list[j].room_num>key.room_num)
-            {
-                this->list[j+1] = this->list[j];
-                j=j-1;
-            }
-
-            this->list[j+1] = key;
-        }
-
-    }
-
-    else if(option == 3){
-        int i, j;
-        ListNode key;
-        for(i=0; i<this->list_size; i++){
-            key = this->list[i];
-            j = i-1;
-
-            while(j>= 0 && this->list[j].name>key.name)
-            {
-                this->list[j+1] = this->list[j];
-                j=j-1;
-            }
-
-            this->list[j+1] = key;
-        }
-    }
-    else {
         int i, j;
         ListNode key;
         for(i=0; i<this->list_size; i++){
@@ -138,84 +125,23 @@ void arrayDatabase::insertionSort(int option)
             this->list[j+1] = key;
         }
     }
-}
 
-void arrayDatabase::selectionSort(int option)
+void arrayDatabase::selectionSort()
 {
-    int i, j;
-    int min_index;
+    int i, j, minIndex;
     ListNode temp;
 
-    if(option == 1){
-
-        for(i=0; i<this->list_size-1; i++){
-
-            min_index = i;
-
-            for(j=i+1; j<this->list_size; j++){
-
-                if(this->list[j].phone_num< this->list[min_index].phone_num){
-                    min_index = j;
-                }
-
-            temp = this->list[min_index];
-            this->list[min_index] = this->list[i];
-            this->list[i] = temp;
+    for(i=0; i<this->list_size-1; i++){
+        minIndex = i;
+        for(j=i+1; j<this->list_size; j++){
+            if(this->list[j].room_price<this->list[minIndex].room_price){
+                minIndex = j;
             }
         }
-    }
-
-    else if(option == 2){
-
-        for(i=0; i<this->list_size-1; i++){
-
-            min_index = i;
-
-            for(j=i+1; j<this->list_size; j++){
-
-                if(this->list[j].room_num< this->list[min_index].room_num){
-                    min_index = j;
-                }
-
-            temp = this->list[min_index];
-            this->list[min_index] = this->list[i];
-            this->list[i] = temp;
-            }
-        }
-    }
-
-    else if(option == 3){
-        for(i=0; i<this->list_size-1; i++){
-
-            min_index = i;
-
-            for(j=i+1; j<this->list_size; j++){
-
-                if(this->list[j].name < this->list[min_index].name){
-                    min_index = j;
-                }
-
-            temp = this->list[min_index];
-            this->list[min_index] = this->list[i];
-            this->list[i] = temp;
-            }
-        }
-    }
-    else{
-        for(i=0; i<this->list_size-1; i++){
-
-            min_index = i;
-
-            for(j=i+1; j<this->list_size; j++){
-
-                if(this->list[j].room_price < this->list[min_index].room_price){
-                    min_index = j;
-                }
-
-            temp = this->list[min_index];
-            this->list[min_index] = this->list[i];
-            this->list[i] = temp;
-            }
+        if(minIndex != i){
+            temp = this->list[i];
+            this->list[i] = this->list[minIndex];
+            this->list[minIndex] = temp;
         }
     }
 }
@@ -223,18 +149,68 @@ void arrayDatabase::selectionSort(int option)
 void arrayDatabase::mergeSort(int l, int r)
 {
 
+    if (l < r)
+    {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l+(r-l)/2;
+
+        // Sort first and second halves
+        this->mergeSort(l, m);
+        this->mergeSort(m+1, r);
+
+        merge(this->list, l, m, r);
+    }
 }
 
 //helper function
 int partition(database &arr, int low, int high)
 {
+        ListNode temp;
+        ListNode pivot = arr[low];
+        int i = low - 1, j = high + 1;
 
+        while (true)
+        {
+            // Find leftmost element greater than
+            // or equal to pivot
+            do
+            {
+                i++;
+            } while (arr[i].room_price < pivot.room_price);
+
+            // Find rightmost element smaller than
+            // or equal to pivot
+            do
+            {
+                j--;
+            } while (arr[j].room_price > pivot.room_price);
+
+            // If two pointers met.
+            if (i >= j)
+                return j;
+
+            temp  = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+
+        }
 }
 
 
 void arrayDatabase::randomizedQuickSort(int low, int high)
 {
+    if (low < high)
+       {
+           /* pi is partitioning index, arr[p] is now
+              at right place */
+           int pi = partition(this->list, low, high);
 
+           // Separately sort elements before
+           // partition and after partition
+           randomizedQuickSort(low, pi);
+           randomizedQuickSort(pi + 1, high);
+       }
 }
 
 

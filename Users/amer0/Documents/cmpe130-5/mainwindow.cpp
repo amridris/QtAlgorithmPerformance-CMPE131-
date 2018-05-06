@@ -62,11 +62,10 @@ void MainWindow::on_Insertion_sort_clicked()
 {
     QElapsedTimer timer;
     timer.start();
-    int sorting_option = ui->sorting_option->value();
    int frequency = ui->frequency_box->value();
    for(int i=0; i<frequency; i++){
         this->database_insertion.changePrice();
-        this->database_insertion.insertionSort(sorting_option);
+        this->database_insertion.insertionSort();
    }
    this->insertion_time = timer.elapsed();
    QString value = QString::number(this->insertion_time);
@@ -79,11 +78,10 @@ void MainWindow::on_selection_sort_clicked()
 {
    QElapsedTimer timer;
    timer.start();
-   int sorting_option = ui->sorting_option->value();
    int frequency = ui->frequency_box->value();
    for(int i=0; i<frequency; i++){
         this->database_selection.changePrice();
-        this->database_selection.selectionSort(sorting_option);
+        this->database_selection.selectionSort();
    }
    this->selection_time = timer.elapsed();
    QString value = QString::number(this->selection_time);

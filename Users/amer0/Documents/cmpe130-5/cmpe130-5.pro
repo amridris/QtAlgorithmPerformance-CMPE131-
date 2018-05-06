@@ -29,16 +29,14 @@ SOURCES += \
     arraydatabase.cpp \
     avltree.cpp \
     listnode.cpp \
-    avlnode.cpp \
-    inputgenerator.cpp
+    avlnode.cpp
 
 HEADERS += \
         mainwindow.h \
     arraydatabase.h \
     avltree.h \
     listnode.h \
-    avlnode.h \
-    inputgenerator.h
+    avlnode.h
 
 FORMS += \
         mainwindow.ui

@@ -207,68 +207,16 @@
      <number>3600</number>
     </property>
    </widget>
-   <widget class="QSpinBox" name="sorting_option">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>250</y>
-      <width>161</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>4</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>250</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;Sorting Option:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>120</y>
-      <width>211</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Options:&lt;br/&gt;1 - Sort by phone number&lt;/p&gt;&lt;p&gt;2 - Sort by Name &lt;/p&gt;&lt;p&gt;3 - Sort by Price&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>60</x>
       <y>290</y>
       <width>531</width>
-      <height>31</height>
+      <height>38</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="print_database">
-       <property name="styleSheet">
-        <string notr="true">font: italic 12pt &quot;Adobe Devanagari&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Print Database</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="generate_database">
        <property name="whatsThis">
@@ -279,6 +227,16 @@
        </property>
        <property name="text">
         <string>Generate database</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="print_database">
+       <property name="styleSheet">
+        <string notr="true">font: italic 12pt &quot;Adobe Devanagari&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Print Database</string>
        </property>
       </widget>
      </item>

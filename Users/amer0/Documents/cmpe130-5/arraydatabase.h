@@ -9,7 +9,7 @@
 #include<utility>
 #include<string>
 #include"listnode.h"
-#include<inputgenerator.h>
+
 
 typedef std::vector<ListNode> database;
 
@@ -31,9 +31,9 @@ public:
 
     void print_database();
 
-    void insertionSort(int option);
+    void insertionSort();
 
-    void selectionSort(int option);
+    void selectionSort();
 
     void mergeSort(int l, int r);
 

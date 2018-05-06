@@ -9,8 +9,6 @@
 class ListNode
 {
 public:
-    long long int phone_num;
-    std::string name;
     int room_num;
     double room_price;
 public:
@@ -22,8 +20,7 @@ public:
     void set_name(std::string n);
     void set_phone(long int number);
     double price_gen();
-    void name_gen();
-    long long phone_gen();
+
 
 };
 
