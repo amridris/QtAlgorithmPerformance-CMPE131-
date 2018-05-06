@@ -2,6 +2,7 @@
 #define AVLTREE_H
 #include<string>
 #include<avlnode.h>
+#include<iostream>
 
 class AVLtree
 {

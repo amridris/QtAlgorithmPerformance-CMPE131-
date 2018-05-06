@@ -59,17 +59,17 @@ void AVLtree::deleteKey(const double price)
         while (child != NULL) {
             parent = n;
             n = child;
-            child = price >= n->key ? n->right : n->left;
-            if (delKey == n->key)
+            child = price >= n->price ? n->right : n->left;
+            if (price == n->price)
                 delNode = n;
         }
 
         if (delNode != NULL) {
-            delNode->key = n->key;
+            delNode->price = n->price;
 
             child = n->left != NULL ? n->left : n->right;
 
-            if (root->key == delKey) {
+            if (root->price == price) {
                 root = child;
             }
             else {
@@ -80,7 +80,7 @@ void AVLtree::deleteKey(const double price)
                     parent->right = child;
                 }
 
-                rebalance(parent);
+                reBalance(parent);
             }
         }
 }
@@ -147,7 +147,7 @@ AVLnode *AVLtree::rotateLeftThenRight(AVLnode *n)
 AVLnode *AVLtree::rotateRightThenLeft(AVLnode *n)
 {
          n->right = rotateRight(n->right);
-        return rotateLeft(n)
+        return rotateLeft(n);
 }
 
 void AVLtree::reBalance(AVLnode *n)
