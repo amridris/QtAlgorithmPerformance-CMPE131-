@@ -39,11 +39,7 @@ public:
 
     void randomizedQuickSort(int low, int high);
 
-    void bubbleSort();
-    
-    void radixSort();
-    
-    void bucketSort();
+    void bubbleSort();    
 
     void deleteValue(int room_price);
     
