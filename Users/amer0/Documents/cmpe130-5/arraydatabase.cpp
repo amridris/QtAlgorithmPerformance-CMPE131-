@@ -3,7 +3,7 @@
 
 //helper function
 void merge( database &arr, int left, int middle, int right){
-    int i, j, k;
+       int i, j, k;
        int n1 = middle - left + 1;
        int n2 =  right - middle;
 
@@ -22,12 +22,12 @@ void merge( database &arr, int left, int middle, int right){
        k = left; // Initial index of merged subarray
        while (i < n1 && j < n2)
        {
-           if (L[i].room_price <= R[j].room_price)
+           if (L[i].room_price <= R[j].room_price)         //checks to see if which index of L[] & R[] is smaller; adds smallest to arr[]
            {
                arr[k] = L[i];
                i++;
            }
-           else
+           else                                          
            {
                arr[k] = R[j];
                j++;
@@ -95,7 +95,7 @@ void arrayDatabase::changePrice()
 
 void arrayDatabase::print_database()
 {
-
+    //prints out information of room number & the room's price
     for(int i=0; i<this->list.size(); i++){
         std::cout<<"\nRecord # "<< i+1<<std::endl;
         std::cout<<this->list[i].room_num<<std::endl;
@@ -112,12 +112,15 @@ void arrayDatabase::insertionSort()
 {
         int i, j;
         ListNode key;
-        for(i=0; i<this->list_size; i++){
+        for(i=0; i<this->list_size; i++){ 
             key = this->list[i];
             j = i-1;
-
-            while(j>= 0 && this->list[j].room_price>key.room_price)
-            {
+            
+            /*
+            moves elements that are greater than the key to a poition
+            ahead of their spot that it is already in */
+            while(j>= 0 && this->list[j].room_price>key.room_price) 
+            {                                                       
                 this->list[j+1] = this->list[j];
                 j=j-1;
             }
@@ -132,13 +135,17 @@ void arrayDatabase::selectionSort()
     ListNode temp;
 
     for(i=0; i<this->list_size-1; i++){
-        minIndex = i;
+        minIndex = i;   //reseting the minIndex back "i" after nested loops are done
+        
+        /*
+        gets the lowest element and stores it in minIndex,
+        in the unsorted section of the elements*/
         for(j=i+1; j<this->list_size; j++){
             if(this->list[j].room_price<this->list[minIndex].room_price){
                 minIndex = j;
             }
         }
-        if(minIndex != i){
+        if(minIndex != i){        //swap two element poition
             temp = this->list[i];
             this->list[i] = this->list[minIndex];
             this->list[minIndex] = temp;
