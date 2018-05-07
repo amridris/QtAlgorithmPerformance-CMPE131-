@@ -96,7 +96,7 @@ void arrayDatabase::changePrice()
 void arrayDatabase::print_database()
 {
 
-    for(int i=0; i<this->list_size; i++){
+    for(int i=0; i<this->list.size(); i++){
         std::cout<<"\nRecord # "<< i+1<<std::endl;
         std::cout<<this->list[i].room_num<<std::endl;
         std::cout<<this->list[i].room_price<<std::endl;

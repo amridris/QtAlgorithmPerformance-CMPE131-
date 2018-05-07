@@ -96,25 +96,36 @@ void AVLtree::createDatabase(int rooms)
 
     for(int i=0; i<rooms; i++){
 
-        this->insert(rooms, bell_curve_generator());
+        this->insert(i+1, bell_curve_generator());
     }
 
 }
 
-bool AVLtree::search(AVLnode *a, int price)
-{
+bool search_helper(AVLnode *n, int price){
 
-    if(this->root == nullptr){
-       return false;
-    }
-    else if (this->root->price == price){
+    if(n->price == price){
+
         return true;
     }
-    else if(price < this->root->price){
-        search(root->left, price);
+    else if(n == nullptr){
+        return false;
     }
-    else if(price > this->root->price){
-        search(root->right, price);
+    else if(price > n->price){
+        search_helper(n->right, price);
+    }
+    else{
+        search_helper(n->left, price);
+    }
+
+
+}
+bool AVLtree::search(int price)
+{
+    if(this->root == nullptr){
+        return false;
+    }
+    else{
+        return search_helper(this->root, price);
     }
 }
 

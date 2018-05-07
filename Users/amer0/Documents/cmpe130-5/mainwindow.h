@@ -11,6 +11,7 @@
 #include<Qstring>
 #include<arraydatabase.h>
 #include<avltree.h>
+#include<time.h>
 
 namespace Ui {
 class MainWindow;
@@ -43,6 +44,10 @@ private slots:
     void on_AVL_tree_clicked();
 
     void on_AddItem_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;

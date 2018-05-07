@@ -59,9 +59,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>320</y>
       <width>331</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -113,16 +113,16 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>420</y>
+      <y>410</y>
       <width>141</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Operations:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -155,7 +155,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -174,7 +174,7 @@
         <number>2</number>
        </property>
        <property name="maximum">
-        <number>50000</number>
+        <number>1000000000</number>
        </property>
       </widget>
      </item>
@@ -190,7 +190,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -248,7 +248,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -285,7 +285,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -303,7 +303,7 @@
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>50000</number>
+          <number>1000000000</number>
          </property>
         </widget>
        </item>
@@ -313,7 +313,7 @@
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>5000</number>
+          <number>1000000000</number>
          </property>
         </widget>
        </item>

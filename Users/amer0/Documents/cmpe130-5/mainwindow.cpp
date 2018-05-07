@@ -112,11 +112,11 @@ void MainWindow::on_quick_sort_clicked()
 {
     QElapsedTimer timer;
     timer.start();
-    int size = this->database_merge.list_size-1;
+
     int frequency = ui->frequency_box->value();
     for(int i=0; i<frequency; i++){
          this->database_quickSort.changePrice();
-         this->database_quickSort.randomizedQuickSort(0, size);
+         this->database_quickSort.randomizedQuickSort(0, database_quickSort.list.size()-1);
     }
     this->random_quick_time = timer.elapsed();
     QString value = QString::number(this->random_quick_time);
@@ -172,6 +172,74 @@ void MainWindow::on_AddItem_clicked()
     double time_taken2 = timer2.elapsed();
     QString value1 = QString::number(time_taken1);
     QString value2 = QString::number(time_taken2);
-    QMessageBox::information(this, "Time Taken","Vector Add took: "+ value1 + "\nAVL add took: " + value2);
+    QMessageBox::information(this, "Time Taken","Vector add took: "+ value1 + "ms" + "\nAVL add took: " + value2 + "ms");
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    int num_items = ui->vector_delete->value();
+    int vect_size = database_quickSort.list.size();
+    int random_num, random_num2;
+    srand(time(NULL));
+    QElapsedTimer timer1, timer2;
+
+    //Delete from the vector
+    timer1.start();
+    random_num = rand() % vect_size + 1;
+    database_quickSort.list.erase(database_quickSort.list.begin(), database_quickSort.list.begin()+num_items);
+    double time_taken1 = timer1.elapsed();
+
+    //delete nodes from AVL
+
+    timer2.start();
+    for(int i=0; i<num_items; i++){
+        random_num2 = rand()% database_AVL.AVL_size + 1;
+        database_AVL.deleteKey(database_AVL.bell_curve_generator());
+    }
+    double time_taken2 = timer2.elapsed();
+
+    //print the time taken!
+    QString value1 = QString::number(time_taken1);
+    QString value2 = QString::number(time_taken2);
+    QMessageBox::information(this, "Time Taken","Vector delete took: "+ value1 + "ms" + "\nAVL delete took: " + value2 + "ms");
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QString num = ui->search->text();
+    QString found_vect, found_AVL;
+    bool AVL;
+    double searchedNum = num.toInt();
+    QElapsedTimer timer1, timer2;
+    timer1.start();
+    for(int i=0; i<database_quickSort.list.size(); i++){
+
+        if(searchedNum == this->database_quickSort.list[i].room_price){
+            found_vect = "found!";
+            break;
+        }
+        else {
+            found_vect = "not Found!";
+        }
+
+    }
+
+    double time_taken1 = timer1.elapsed();
+
+    timer2.start();
+    AVL = database_AVL.search(searchedNum);
+    if(AVL == true){
+        found_AVL = "found!";
+    }
+    else{
+        found_AVL = "not Found!";
+    }
+    double time_taken2 = timer2.elapsed();
+
+    QString value1 = QString::number(time_taken1);
+    QString value2 = QString::number(time_taken2);
+    QMessageBox::information(this, "Time Taken","For Vector database the item was " + found_vect + "\nFor AVL database the item was " + found_AVL + "\n Vector time taken: " + value1 + " ms\nAVL time taken: " + value2 + " ms");
+
 
 }

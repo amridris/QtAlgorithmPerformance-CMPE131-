@@ -14,11 +14,11 @@ public:
     AVLtree();
     ~AVLtree();
     bool insert(int r, int price);
-    bool deleteKey(const int price);
+    bool deleteKey(const int room);
     void printBalance();
     void createDatabase(int rooms);
     int AVL_size;
-    bool search(AVLnode *a, int price);
+    bool search(int price);
     int bell_curve_generator();
 
 private:
